@@ -1,2 +1,1 @@
-# hcb
-Automated Breaking of Historical Ciphers
+# Automated Breaking of Historical Ciphers
