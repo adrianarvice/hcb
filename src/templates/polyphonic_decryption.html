@@ -1,0 +1,271 @@
+{% extends "base.html" %} {% block title %}Polyphonic Decryption{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+
+    <!--########## Upper ##########-->
+    <div class="row">
+
+        <!--########## SETTING ##########-->
+        <div class="col">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-primary setting_stop-start_button" data-toggle="modal" data-target="#exampleModal">
+                    Settings
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                          <h6>Sourcetexts</h6>
+                          <input id="input-2" name="input2[]" type="file" class="file"  data-show-upload="false" data-show-caption="true" multiple>
+                          <br>
+                          <small class="text-muted">If nothing get's uploaded the program uses the default texts in english language.</small>
+
+                          <br>
+                          <br>
+
+                          <h6>N-gram</h6>
+                          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                              <option selected>2</option>
+                              <option value="1">3</option>
+                              <option value="2">4</option>
+                              <option value="3">5</option>
+                              <option value="3">2-5</option>
+
+                          </select>
+
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <!--########## STOP/START ##########-->
+        <div class="col">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-end">
+                    <button id="polyphonic_startDecryption" type="button" class="btn btn-danger setting_stop-start_button">STOP</button>
+                    <button type="submit" class="btn btn-success setting_stop-start_button">START</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+
+    <!--########## Main ##########-->
+     <div class="row">
+
+         <div class="col">
+            <div class="container-fluid">
+                <div class="mb-3">
+                    <label for="polyphonic_input_ciphertext" class="form-label">Input Ciphertext</label>
+                    <textarea class="form-control input_output-textarea" name="polyphonic_input_ciphertext" id="polyphonic_input_ciphertext" rows="25"></textarea>
+                </div>
+            </div>
+         </div>
+
+
+         <div class="col">
+             <br>
+
+             <table class="table table-striped">
+                 <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Plaintext character</th>
+                    </tr>
+                 </thead>
+
+                 <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+
+                                     <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+                              <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                    </tr>
+
+
+                 </tbody>
+             </table>
+
+         </div>
+
+
+
+         <div class="col">
+            <div class="container-fluid">
+                <div class="mb-3">
+                    <label for="polyphonic_output_plaintext" class="form-label">Plaintext</label>
+                    <textarea class="form-control input_output-textarea" id="polyphonic_output_plaintext" rows="25"></textarea>
+                </div>
+            </div>
+         </div>
+    </div>
+    <br>
+
+    <!--########## Progess Bar & Analytics ##########-->
+    <div class="row">
+        <div class="container-fluid">
+            <div class="block progress" style="width: 98%">
+                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            </div>
+            <br>
+            <div class="accordion container-fluid" id="myAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">Analytics</button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="terminal_div">
+                                        <ul class="fitnessValueList" id="listItem">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div id="chart" class="chart bar-chart"></div>
+                                </div>
+                                <!--
+                                <div class="col">
+                                    <div id="analytics_plot">
+                                        <img src="/plot.png" alt="my plot">
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+
+<script>
+
+    $(function(){
+        $('#polyphonic_startDecryption').on('click' , function(){
+            console.log("I've been clicked!");
+
+        });
+    });
+
+    var socket = io.connect('http://localhost:5010');
+
+    socket.on('connect', function() {
+        console.log('Successfully connected to server!');
+        socket.emit('polyphonic_decryption_analyzer')
+
+    })
+
+
+
+</script>
+
+
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"><script type="module" src={{ url_for('static', filename='polyphonic_decryption.js') }}></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+
+{% endblock %}
